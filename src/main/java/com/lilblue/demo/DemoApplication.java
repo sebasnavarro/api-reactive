@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 
 import reactor.core.publisher.Flux;
 import com.lilblue.demo.services.*;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication
+		implements CommandLineRunner, WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	@Autowired
 	private PlayerService service;
@@ -30,14 +33,25 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		mongoTemplate.dropCollection("player").subscribe();
-
-		Flux.just(new Player("Christiam", "Navarro"),
-				new Player("Erick", "Caballero")).flatMap(player -> {
-					player.setBirthDate(new Date());
-					return service.save(player);
-				})
-				.subscribe(player -> log.info("Insert: " + player.getId() + " " + player.getName()));
+		/*
+		 * mongoTemplate.dropCollection("player").subscribe();
+		 * 
+		 * 
+		 * Flux.just(new Player("Christiam", "Navarro"),
+		 * new Player("Erick", "Caballero")).flatMap(player -> {
+		 * player.setBirthDate(new Date());
+		 * return service.save(player);
+		 * })
+		 * .subscribe(player -> log.info("Insert: " + player.getId() + " " +
+		 * player.getName()));
+		 */
 	}
+
+	@Override
+	public void customize(ConfigurableServletWebServerFactory factory) {
+		if (System.getenv("PORT") != null) {
+			factory.setPort(Integer.valueOf(System.getenv("PORT")));
+		}
+	}
+
 }
