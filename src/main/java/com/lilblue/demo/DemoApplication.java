@@ -1,31 +1,28 @@
 package com.lilblue.demo;
 
-import java.util.Date;
-import com.lilblue.demo.documents.Player;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-
-import reactor.core.publisher.Flux;
-import com.lilblue.demo.services.*;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+// import com.lilblue.demo.services.*; 
 
 @SpringBootApplication
 public class DemoApplication
 		implements CommandLineRunner, WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
-	@Autowired
-	private PlayerService service;
+	// @Autowired
+	// private PlayerService service;
 
-	@Autowired
-	private ReactiveMongoTemplate mongoTemplate;
+	// @Autowired
+	// private ReactiveMongoTemplate mongoTemplate;
 
-	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+	// private static final Logger log =
+	// LoggerFactory.getLogger(DemoApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
