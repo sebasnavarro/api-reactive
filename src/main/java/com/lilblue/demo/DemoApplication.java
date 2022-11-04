@@ -1,28 +1,18 @@
 package com.lilblue.demo;
 
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
+import org.springdoc.core.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-// import com.lilblue.demo.services.*; 
+import org.springframework.context.annotation.Bean;
+import io.swagger.v3.oas.models.info.Info;
 
 @SpringBootApplication
 public class DemoApplication
 		implements CommandLineRunner, WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
-
-	// @Autowired
-	// private PlayerService service;
-
-	// @Autowired
-	// private ReactiveMongoTemplate mongoTemplate;
-
-	// private static final Logger log =
-	// LoggerFactory.getLogger(DemoApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -42,6 +32,15 @@ public class DemoApplication
 		 * .subscribe(player -> log.info("Insert: " + player.getId() + " " +
 		 * player.getName()));
 		 */
+	}
+
+	@Bean
+	public GroupedOpenApi employeesOpenApi(@Value("${springdoc.version}") String appVersion) {
+		String[] paths = { "/api/player/**" };
+		return GroupedOpenApi.builder().group("player")
+				.addOpenApiCustomiser(openApi -> openApi.info(new Info().title("Player API").version(appVersion)))
+				.pathsToMatch(paths)
+				.build();
 	}
 
 	@Override

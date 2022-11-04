@@ -8,15 +8,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.Valid;
-
 import com.lilblue.demo.documents.Player;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.WebExchangeBindException;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.lilblue.demo.services.*;
 
+@CrossOrigin(origins = { "http://localhost:3000", "*" })
 @RestController
 @RequestMapping("/api/player")
 public class PlayerController {
