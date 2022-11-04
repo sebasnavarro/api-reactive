@@ -2,6 +2,22 @@
 
 1) Creación de compilado:
   .\mvnw clean install
+  
+  En caso de no funciona probar añadiendo lo siguiente: 
+
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+             <mainClass>com.lilblue.demo.DemoApplication</mainClass>
+          </manifest>
+        </archive>
+       </configuration>
+  Luego ejecutar el siguiente comando:
+  
+  .\mvnw package spring-boot:repackage
 
 2) Ejecución de compilado:
   java -jar ./target/demo-0.0.1-SNAPSHOT.jar
@@ -13,16 +29,16 @@
   heroku create api-reactivo
   
 5) Configurando tu app-config.yaml:
-  heroku stack:set container -a api-reactivo
+  heroku stack:set container -a api-reactive
   
 6) Ingresando al container:
   heroku container:login
 
 7) Creando imagen:
-  docker image build . -f Dockerfile --tag registry.heroku.com/api-reactivo/web
+  docker image build . -f Dockerfile --tag registry.heroku.com/api-reactive/web
 
 8) Subiendo imagen:
-  docker push registry.heroku.com/api-reactivo/web
+  docker push registry.heroku.com/api-reactive/web
 
 9) Seleccionando contenedor a la app:
   heroku container:release web -a api-reactivo
