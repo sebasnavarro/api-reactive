@@ -4,17 +4,24 @@
   .\mvnw clean install
   
   En caso de no funciona probar añadiendo lo siguiente: 
-
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-jar-plugin</artifactId>
-    <version>3.1.0</version>
-      <configuration>
-        <archive>
-          <manifest>
-             <mainClass>com.lilblue.demo.DemoApplication</mainClass>
-          </manifest>
-        </archive>
-       </configuration>
+  
+  <build>
+		<plugins>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+          <configuration>
+            <archive>
+              <manifest>
+                 <mainClass>com.lilblue.demo.DemoApplication</mainClass>
+              </manifest>
+            </archive>
+           </configuration>
+        </plugin>
+    </plugins>
+	</build>
+  
   Luego ejecutar el siguiente comando:
   
   .\mvnw package spring-boot:repackage
