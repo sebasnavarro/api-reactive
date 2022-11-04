@@ -5,9 +5,7 @@
   
   En caso de no funciona probar añadiendo lo siguiente: 
   
-  <build>
-		<plugins>
-        <plugin>
+       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.1.0</version>
@@ -19,8 +17,6 @@
             </archive>
            </configuration>
         </plugin>
-    </plugins>
-	</build>
   
   Luego ejecutar el siguiente comando:
   
@@ -48,9 +44,9 @@
   docker push registry.heroku.com/api-reactive/web
 
 9) Seleccionando contenedor a la app:
-  heroku container:release web -a api-reactivo
+  heroku container:release web -a api-reactive
   
   
  App desplegado en heroku:
  
- https://api-reactivo.herokuapp.com/
+ https://api-reactive.herokuapp.com/swagger-ui.html
