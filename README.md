@@ -3,7 +3,7 @@
 1) Creación de compilado:
   .\mvnw clean install
   
-  En caso de no funciona probar añadiendo lo siguiente: 
+  En caso de no funcionar probar añadiendo en el pom.xml lo siguiente: 
   
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>
